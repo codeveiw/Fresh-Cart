@@ -31,7 +31,7 @@ export default function PaymentPage() {
                 body: JSON.stringify({
                     paymentMethod,
                     shippingAddress: formData
-                })
+                } as { paymentMethod: string; shippingAddress: typeof formData })
             });
 
             const data = await res.json();

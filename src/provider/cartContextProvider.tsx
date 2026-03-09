@@ -22,7 +22,7 @@ let providerInstanceCount = 0;
 
 export default function CartContextProvider({ children }: { children: React.ReactNode }) {
     const [instanceId] = useState(() => ++providerInstanceCount);
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState<any[] | null>(null)
     const [numOfCartItem, setNumOfCartItem] = useState(0)
     const [cartId, setCardId] = useState(null)
     const [totalPrice, setTotalPrice] = useState(0)
