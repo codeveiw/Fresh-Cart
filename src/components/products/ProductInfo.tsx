@@ -1,8 +1,10 @@
-import { Star, Heart, Share2 } from "lucide-react";
+"use client"
+
+import { Star, Heart } from "lucide-react";
 import { Product } from "@/types/product";
 import AddToCart from "@/app/_components/addToCart/AddToCart";
 import { useWishlist } from "@/provider/wishlistContextProvider";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 
 interface ProductInfoProps {
     product: Product;
@@ -22,24 +24,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
         }
     };
 
-    const handleShare = async () => {
-        const shareData = {
-            title: product.title,
-            text: product.description,
-            url: window.location.href,
-        };
-
-        try {
-            if (navigator.share) {
-                await navigator.share(shareData);
-            } else {
-                await navigator.clipboard.writeText(window.location.href);
-                toast.success("Link copied to clipboard");
-            }
-        } catch (err) {
-            console.error("Error sharing:", err);
-        }
-    };
 
     return (
         <div className="flex flex-col">
@@ -107,12 +91,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
                         }`}
                 >
                     <Heart size={20} fill={isFavorite ? "currentColor" : "none"} />
-                </button>
-                <button
-                    onClick={handleShare}
-                    className="flex items-center justify-center rounded-xl border border-gray-200 bg-white p-4 text-gray-500 transition-all hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900 active:scale-95"
-                >
-                    <Share2 size={20} />
                 </button>
             </div>
         </div>
