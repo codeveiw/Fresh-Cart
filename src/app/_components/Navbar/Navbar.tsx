@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import { signOut, useSession } from 'next-auth/react'
 import { cartContext } from '@/provider/cartContextProvider'
+import { useWishlist } from '@/provider/wishlistContextProvider'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -15,6 +16,7 @@ export default function Navbar() {
     signOut({ redirect: true, callbackUrl: "/Login" })
   }
   let { numOfCartItem } = useContext(cartContext)
+  const { wishlistCount } = useWishlist()
 
   React.useEffect(() => {
     console.log("[Navbar] numOfCartItem changed:", numOfCartItem);
@@ -43,6 +45,15 @@ export default function Navbar() {
                 </span>
               </div>
               <span className="ml-1 group-hover:text-emerald-100 transition-colors">Cart</span>
+            </Link></li>
+            <li><Link href="/wishlist" className="flex items-center gap-1 group">
+              <div className="relative">
+                <i className="fa-regular fa-heart text-xl group-hover:text-emerald-100 transition-colors"></i>
+                <span className="absolute -top-3 -right-3 bg-white text-emerald-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-emerald-500 shadow-sm min-w-[20px] text-center">
+                  {wishlistCount}
+                </span>
+              </div>
+              <span className="ml-1 group-hover:text-emerald-100 transition-colors">Wishlist</span>
             </Link></li>
             <li><Link href="/Product">Product</Link></li>
             <li><Link href="/Categories">Categories</Link></li>
@@ -90,6 +101,12 @@ export default function Navbar() {
               <span>Cart</span>
               <span className="bg-emerald-600 text-white px-2 py-0.5 rounded-lg text-sm font-bold">
                 {numOfCartItem}
+              </span>
+            </Link></li>
+            <li><Link onClick={() => setOpen(false)} href="/wishlist" className="flex items-center gap-2">
+              <span>Wishlist</span>
+              <span className="bg-emerald-600 text-white px-2 py-0.5 rounded-lg text-sm font-bold">
+                {wishlistCount}
               </span>
             </Link></li>
             <li><Link onClick={() => setOpen(false)} href="/Product">Product</Link></li>
