@@ -6,7 +6,7 @@ export default async function AllProduct() {
   let data = await getAllProducts()
   return (
     <div>
-      <div className="container mx-auto w-[80%] mt-12">
+      <div className="container mx-auto w-full px-4 md:px-0 md:w-[80%] mt-12">
 
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {data.map((product: any) => {

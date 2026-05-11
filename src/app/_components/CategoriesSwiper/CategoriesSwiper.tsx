@@ -12,7 +12,7 @@ import { Category } from '@/types/product'
 
 export default function CategoriesSwiper({ categories }: { categories: Category[] }) {
   return <>
-    <div className="container mx-auto w-[80%]">
+    <div className="container mx-auto w-full px-4 md:w-[80%] md:px-0">
 
       <Swiper
         spaceBetween={10}
