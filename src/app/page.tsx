@@ -6,8 +6,8 @@ import AllProduct from "./_components/AllProduct/AllProduct";
 
 export default function Home() {
   return <>
- <MainSlider/>
- <CategoriesSlider/>
- <AllProduct/>
+    <div className="hidden md:block"><MainSlider /></div>
+    <div className="hidden md:block"><CategoriesSlider /></div>
+    <AllProduct />
   </>
 }
